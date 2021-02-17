@@ -1,0 +1,106 @@
+<%- include('partials/header') %>
+
+    <section
+      id="contact"
+      data-animate="bounceIn"
+      class="contact-section contact"
+    >
+      <div class="container">
+        <header class="text-center">
+          <h2 class="title">Contact me</h2>
+        </header>
+
+        <div class="row" style="margin-bottom: 2rem">
+          <div class="col-lg-8 mx-auto">
+            <form id="contact-form" method="post" action="">
+              <div class="messages"></div>
+              <div class="controls">
+                <div class="row" style="font-family: Poppins">
+                  <div class="col-md-4" style="border: 1px solid black">
+                    <div>Email:</div>
+                    <div>patelpulkit524@gmail.com</div>
+                  </div>
+                  <div class="col-md-4" style="border: 1px solid black">
+                    <div>Contact:</div>
+                    <div>+1 4161234567</div>
+                  </div>
+                  <div class="col-md-4" style="border: 1px solid black">
+                    <div>Address:</div>
+                    <div>123 Yonge street M1X2G3, Toronto</div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <form
+              id="contact-form"
+              method="post"
+              action="mailto:patelpulkit524@gmail.com"
+            >
+              <div class="messages"></div>
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your firstname *"
+                      required="required"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="surname"
+                      placeholder="Your lastname *"
+                      required="required"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="Your email *"
+                      required="required"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Your phone"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <textarea
+                      name="message"
+                      placeholder="Message for me *"
+                      rows="4"
+                      required="required"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <button class="btn btn-outline-primary">
+                      <a href="/" style="color: black"> Send message </a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="map"></div>
+
+    <%- include('partials/footer') %>

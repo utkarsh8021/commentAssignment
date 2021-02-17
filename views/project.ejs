@@ -1,0 +1,148 @@
+<%- include('partials/header') %>
+
+    <section id="references">
+      <div class="container">
+        <div class="col-sm-12">
+          <div class="mb-5 text-center">
+            <h2 data-animate="fadeInUp" class="title">My work</h2>
+            <p data-animate="fadeInUp" class="lead">
+              Worked on many projects. Showcasing the best once here.
+            </p>
+          </div>
+          <ul id="filter" data-animate="fadeInUp">
+            <li class="active"><a href="#" data-filter="all">All</a></li>
+            <li><a href="#" data-filter="webdesign">Web Design</a></li>
+            <li><a href="#" data-filter="WD">Web Development</a></li>
+          </ul>
+          <div id="detail">
+            <div class="row">
+              <div class="col-lg-10 mx-auto">
+                <span class="close">×</span>
+                <div id="detail-slider" class="owl-carousel owl-theme"></div>
+                <div class="text-center">
+                  <h1 id="detail-title" class="title"></h1>
+                </div>
+                <div id="detail-content"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Reference detail-->
+          <div id="references-masonry" data-animate="fadeInUp">
+            <div class="row">
+              <div
+                data-category="webdesign"
+                class="reference-item col-lg-3 col-md-6"
+              >
+                <div class="reference">
+                  <a href="#"
+                    ><img src="/img/portfolio-1.jpg" alt="" class="img-fluid" />
+                    <div class="overlay">
+                      <div class="inner">
+                        <h3 class="h4 reference-title">Designed a website</h3>
+                        <p>Read about my project</p>
+                      </div>
+                    </div></a
+                  >
+                  <div
+                    data-images="/img/design.jpeg,/img/design1.jpg"
+                    class="sr-only reference-description"
+                  >
+                    <p>
+                      <p>I desgined a website using adobe XD and adobe Photoshop.</p>
+                      <p>Doing this project taught me the importance of time and creativity. I was very much involved in the project and able to complete it on time.</p>
+                    </p>
+                    <p>
+                     
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div data-category="WD" class="reference-item col-lg-3 col-md-6">
+                <div class="reference">
+                  <a href="#"
+                    ><img src="/img/portfolio-2.jpg" alt="" class="img-fluid" />
+                    <div class="overlay">
+                      <div class="inner">
+                        <h3 class="h4 reference-title">Developed a website</h3>
+                        <p>Read about my project</p>
+                      </div>
+                    </div></a
+                  >
+                  <div
+                    data-images="/img/code1.jpeg"
+                    class="sr-only reference-description"
+                  >
+                    <p>
+                      <p>Developed a website using Bootstrap, CSS, HTML and Javascript</p>
+                      <p>It took me around 2 months to complete this project and I learn a lot while making it. I learned how to fix bugs and deploy the site on AWS.</p>
+                    </p>
+                    <p>
+                      
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div data-category="WD" class="reference-item col-lg-3 col-md-6">
+                <div class="reference">
+                  <a href="#"
+                    ><img src="/img/portfolio-3.jpg" alt="" class="img-fluid" />
+                    <div class="overlay">
+                      <div class="inner">
+                        <h3 class="h4 reference-title">
+                          Developed an e-commerce website
+                        </h3>
+                        <p>Read about my project</p>
+                      </div>
+                    </div></a
+                  >
+                  <div
+                    data-images="/img/code.jpg"
+                    class="sr-only reference-description"
+                  >
+                    <p>
+                     
+                    </p>
+                    <p>
+                      <p>Developed an ecommerce site using Node.js and React/</p>
+                      <p>Set up the admin panel to view all the important imformation was a challenge in this project. But while doing this I worked hard completed it on time.</p>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-category="webdesign"
+                class="reference-item col-lg-3 col-md-6"
+              >
+                <div class="reference">
+                  <a href="#"
+                    ><img src="/img/portfolio-5.jpg" alt="" class="img-fluid" />
+                    <div class="overlay">
+                      <div class="inner">
+                        <h3 class="h4 reference-title">Designed in Adobe XD</h3>
+                        <p>read about my project here</p>
+                      </div>
+                    </div></a
+                  >
+                  <div
+                    data-images="/img/design1.jpg,/img/design.jpeg"
+                    class="sr-only reference-description"
+                  >
+                    <p>
+                      I designed multiple prototype web pages on adobe XD to put them in my design portfolio.</p>
+                      <p>I am a designer by heart and I love designing. While doing this project I learned a lot.
+                    </p>
+                    <p>
+                     
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+          <!-- /.6-->
+<%- include('partials/footer') %>
