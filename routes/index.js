@@ -64,11 +64,11 @@ router.get("/studentcomments/:id",ensureAdminAuthenticated, function(req,res){
       find({
         student: req.id
       }, (err, comments) => {
-          console.log(comments, "comm");
+         
         if (err) { return getErrorMessage(err); }
         //res.json(comments);
         res.render('comment_student', {
-          comments: comments, email: email
+          comments: comments, email: email, length: comments.length,
         })
       })
   })
