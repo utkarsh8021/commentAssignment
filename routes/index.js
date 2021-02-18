@@ -3,24 +3,20 @@ const Student = require('../models/student.server.model');
 const Comment = require('../models/comments.server.model');
 var ObjectID = require('mongodb').ObjectID;
 const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated, ensureAdminAuthenticated } = require('../config/auth');
+const { ensureAuthenticated, forwardAuthenticated,  ensureAdminAuthenticated } = require('../config/auth');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 
-//About Page
+//Thankyou Page
 router.get('/thankyou', ensureAuthenticated, (req, res) => {
   user = req.user
   res.render('thank');
 });
 
-//About Page
-router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
-//About Page
-// router.get('/contact', forwardAuthenticated, (req,res) => res.render('contact'));
-let use = {}
-// Dashboard
+
+//Submit Comments Page
 router.get('/comments', ensureAuthenticated, function (req, res) {
   // console.log(req.user, "req");
   user = req.user;
@@ -35,6 +31,7 @@ router.get('/comments', ensureAuthenticated, function (req, res) {
       });
 });
 
+// All Students Page
 router.get('/student', ensureAdminAuthenticated, function (req, res) {
   Student.find({}, function(err, produtos) {
       if (err){
@@ -48,6 +45,7 @@ router.get('/student', ensureAdminAuthenticated, function (req, res) {
       });
 });
 
+//Display Student Comments Page
 router.get("/studentcomments/:id",ensureAdminAuthenticated, function(req,res){
   Student.findById(req.params.id, function (err, produtos) {
     console.log(produtos.email, "po");
@@ -55,9 +53,7 @@ router.get("/studentcomments/:id",ensureAdminAuthenticated, function(req,res){
     if (err) {
       res.redirect("/student");
     }
-    //  else {
-    //   res.render("comment_student", { data: produtos });
-    // }
+    
   }).then(function () {
     //find the posts from this author
     Comment.
@@ -66,7 +62,6 @@ router.get("/studentcomments/:id",ensureAdminAuthenticated, function(req,res){
       }, (err, comments) => {
          
         if (err) { return getErrorMessage(err); }
-        //res.json(comments);
         res.render('comment_student', {
           comments: comments, email: email, length: comments.length,
         })
@@ -94,17 +89,6 @@ router.post('/comments', (req, res) => {
       comment
     });
   } else {
-    // Student.findOne({ email: email }).then(user => {
-      // if (user) {
-      //   errors.push({ msg: 'Email already exists' });
-      //   res.render('register', {
-      //     errors,
-      //     firstName,
-      //     lastName,
-      //     email,
-      //     password
-      //   });
-      // } else {
         const newComment = new Comment({
           courseCode,
           courseName,
@@ -113,7 +97,6 @@ router.post('/comments', (req, res) => {
           comment
         });
 
-       
             newComment
               .save()
               .then(user => {
@@ -125,8 +108,7 @@ router.post('/comments', (req, res) => {
               })
               .catch(err => console.log(err));
           
-      // }
-    // });
+     
   }
 });
 
