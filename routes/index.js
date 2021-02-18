@@ -36,7 +36,6 @@ router.get('/comments', ensureAuthenticated, function (req, res) {
 });
 
 router.get('/student', ensureAdminAuthenticated, function (req, res) {
-
   Student.find({}, function(err, produtos) {
       if (err){
           console.log(err);
@@ -49,9 +48,15 @@ router.get('/student', ensureAdminAuthenticated, function (req, res) {
       });
 });
 
-router.get('/studentcomments', function (req, res) {
-  res.render('comment_student');
-})
+router.get("/studentcomments/:id",ensureAdminAuthenticated, function(req,res){
+  Student.findById(req.params.id, function(err,produtos ){
+      if(err){
+          res.redirect("/student");
+      }else{
+          res.render("comment_student",{data: produtos});
+      }
+  })
+});
 
 // Register
 router.post('/comments', (req, res) => {
