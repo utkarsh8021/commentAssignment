@@ -10,7 +10,15 @@ module.exports = {
     if (!req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/dashboard');      
+    res.redirect('/comments');      
+  },
+  adminAuthenticated: function (req, res, next) {
+    if(req.body.email == 'admin' && req.body.password=='admin@123')
+    // if (!req.isAuthenticated())
+    {
+      return next();
+    }
+    res.redirect('/studentcomments');      
   }
 };
 

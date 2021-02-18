@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-// Load User model
-const User = require('../models/User');
+// Load Student model
+const Student = require('../models/student.server.model');
 const { forwardAuthenticated } = require('../config/auth');
 
 //Home Page
@@ -16,16 +16,13 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-  const { name, email, number,  password, password2 } = req.body;
+  const { firstname, lastname, email, password } = req.body;
   let errors = [];
 
-  if (!name || !email || !password || !number || !password2) {
+  if (!firstname || !lastname || !email || !password ) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
-  if (password != password2) {
-    errors.push({ msg: 'Passwords do not match' });
-  }
 
   if (password.length < 6) {
     errors.push({ msg: 'Password must be at least 6 characters' });
@@ -34,28 +31,27 @@ router.post('/register', (req, res) => {
   if (errors.length > 0) {
     res.render('register', {
       errors,
-      name,
+      firstname,
+      lastname,
       email,
-      password,
-      password2
+      password
     });
   } else {
-    User.findOne({ email: email }).then(user => {
+    Student.findOne({ email: email }).then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
         res.render('register', {
           errors,
-          name,
+          firstname,
+          lastname,
           email,
-          number,
-          password,
-          password2
+          password
         });
       } else {
-        const newUser = new User({
-          name,
+        const newUser = new Student({
+          firstname,
+          lastname,
           email,
-          number,
           password
         });
 
@@ -83,7 +79,7 @@ router.post('/register', (req, res) => {
 // Login
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/dashboard',
+    successRedirect: '/comments',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);

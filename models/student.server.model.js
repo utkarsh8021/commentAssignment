@@ -28,5 +28,8 @@ const StudentSchema = new Schema({
 });
 
 // Create the 'Student' model out of the 'StudentSchema'
-mongoose.model('Student', StudentSchema);
+const Student = mongoose.model('Student', StudentSchema);
+module.exports = Student;
+
+
 
