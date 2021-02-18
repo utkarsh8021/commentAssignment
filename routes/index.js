@@ -16,9 +16,6 @@ router.get('/thankyou', ensureAuthenticated, (req, res) => {
 });
 
 //About Page
-router.get('/students', ensureAdminAuthenticated, (req,res) => res.render('students'));
-
-//About Page
 router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
 //About Page
 // router.get('/contact', forwardAuthenticated, (req,res) => res.render('contact'));
@@ -47,6 +44,10 @@ router.get('/student', function (req, res) {
           }
       });
 });
+
+router.get('/studentcomments', function(req,res){
+  res.render('comment_student');
+})
 
 // Register
 router.post('/comments', (req, res) => {
