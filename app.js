@@ -37,6 +37,9 @@ app.use(express.static("public"));
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 
+
+
+
 // Express session
 app.use(
   session({
@@ -45,6 +48,7 @@ app.use(
     saveUninitialized: true
   })
 );
+
 
 // Passport middleware
 app.use(passport.initialize());
@@ -66,6 +70,10 @@ app.use('/', require('./routes/index.js'));
 
 
 app.use('/users', require('./routes/users.js'));
+
+
+
+
 
 const PORT = process.env.PORT || 3000;
 

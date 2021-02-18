@@ -3,15 +3,18 @@
 
 <div id="myModal" style="margin-bottom: 14rem;
 align-items: center;
-margin-top: 11rem;
+margin-top: 5rem;
 " >
-
 <div class="row mt-5">
 
   <div class="col-md-6 m-auto">
+    <div class="row" style="margin-bottom: 1rem; margin-left: 9rem;"><h2>Hello, <%= user.firstName %> <%= user.lastName %></h2></div>
+
     <div class="card card-body">
+
       <h3 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Submit a comment</h3>
       <% include ./partials/messages %>
+     
       <form action="/comments" method="POST">
         <div class="form-group">
           <label for="courseCode">Course Code</label>

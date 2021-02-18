@@ -23,7 +23,9 @@ module.exports = {
     }
     res.redirect('/comments');      
   },
-
+  session: function(req, res){
+    return req.session;
+},
   adminAuthenticated: function (req, res, next) {
     
     if (!req.isAuthenticated()) {

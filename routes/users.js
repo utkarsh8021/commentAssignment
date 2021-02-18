@@ -81,6 +81,7 @@ router.post('/register', (req, res) => {
 
 // Login
 router.post('/login', (req, res, next) => {
+  console.log(req, "user");
   passport.authenticate('local', {
     successRedirect: '/comments',
     failureRedirect: '/users/login',
@@ -89,6 +90,7 @@ router.post('/login', (req, res, next) => {
 });
 
 //Admin login
+var sess;
 router.post('/login/admin', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/students',

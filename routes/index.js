@@ -4,12 +4,17 @@ const Comment = require('../models/comments.server.model');
 var ObjectID = require('mongodb').ObjectID;
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated, ensureAdminAuthenticated, isAuthenticated } = require('../config/auth');
+const { session } = require('passport');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
+
 //About Page
-router.get('/thankyou', ensureAuthenticated, (req,res) => res.render('thank'));
+router.get('/thankyou', ensureAuthenticated, (req, res) => {
+  user = req.user
+  res.render('thank');
+});
 
 //About Page
 router.get('/students',   ensureAdminAuthenticated, (req,res) => res.render('students'));
@@ -18,13 +23,17 @@ router.get('/students',   ensureAdminAuthenticated, (req,res) => res.render('stu
 router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
 //About Page
 // router.get('/contact', forwardAuthenticated, (req,res) => res.render('contact'));
-
+let use = {}
 // Dashboard
 router.get('/comments', ensureAuthenticated, function (req, res) {
+  // console.log(req.user, "req");
+  user = req.user;
+  last = user.lastName;
   Student.find({}, function(err, produtos) {
       if (err){
           console.log(err);
-      }else{
+      } else {
+        
           res.render('comments.ejs', { data: produtos});
           }
       });
