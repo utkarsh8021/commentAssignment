@@ -3,8 +3,7 @@ const Student = require('../models/student.server.model');
 const Comment = require('../models/comments.server.model');
 var ObjectID = require('mongodb').ObjectID;
 const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated, ensureAdminAuthenticated, isAuthenticated } = require('../config/auth');
-const { session } = require('passport');
+const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated, ensureAdminAuthenticated } = require('../config/auth');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
@@ -17,7 +16,7 @@ router.get('/thankyou', ensureAuthenticated, (req, res) => {
 });
 
 //About Page
-router.get('/students',   ensureAdminAuthenticated, (req,res) => res.render('students'));
+router.get('/students', ensureAdminAuthenticated, (req,res) => res.render('students'));
 
 //About Page
 router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
@@ -35,6 +34,16 @@ router.get('/comments', ensureAuthenticated, function (req, res) {
       } else {
         
           res.render('comments.ejs', { data: produtos});
+          }
+      });
+});
+
+router.get('/student', function (req, res) {
+  Student.find({}, function(err, produtos) {
+      if (err){
+          console.log(err);
+      }else{
+          res.render('students.ejs', { data: produtos});
           }
       });
 });
@@ -59,6 +68,17 @@ router.post('/comments', (req, res) => {
       comment
     });
   } else {
+    // Student.findOne({ email: email }).then(user => {
+      // if (user) {
+      //   errors.push({ msg: 'Email already exists' });
+      //   res.render('register', {
+      //     errors,
+      //     firstName,
+      //     lastName,
+      //     email,
+      //     password
+      //   });
+      // } else {
         const newComment = new Comment({
           courseCode,
           courseName,
@@ -66,6 +86,8 @@ router.post('/comments', (req, res) => {
           semester,
           comment
         });
+
+       
             newComment
               .save()
               .then(user => {
@@ -77,6 +99,8 @@ router.post('/comments', (req, res) => {
               })
               .catch(err => console.log(err));
           
+      // }
+    // });
   }
 });
 

@@ -6,6 +6,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const path = require('path');
 const app = express();
+var Student = require("./models/student.server.model");
+var Comment=require("./models/comments.server.model");
 
 // Passport Config
 require('./config/passport')(passport);
@@ -59,6 +61,7 @@ app.use(flash());
 
 // Global variables
 app.use(function(req, res, next) {
+
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');

@@ -101,24 +101,21 @@
                     </th>
                     
                 </tr  style="text-align: center;">
-                <% data.forEach(function(user) { %>
+                <% data.forEach(function(Student) { %>
                     <tr>
                         <td>
-                            <%= user.name %>
+                            <%= Student.firstName %>
                         </td>
                       
                        
                         <td style="padding-left: 5rem;">
-                            <%= user.email %>
+                            <%= Student.email %>
                         </td>
                         <td style="padding-left: 5rem;">
-                            <%= user.number %>                     
+                            <%= Student.lastName %>                     
                         </td>
                         
-                        <td style=" padding-left: 5rem;">
-                            
-                            <button type='button' onclick="productEdit('<%= JSON.stringify(user) %>');" class='btn_action' style="background-color:#f39db6; color: white;"> ✎ </button>
-                        </td>
+                       
                       
                     </tr>
                 <% }); %>
@@ -129,7 +126,7 @@
 
         <% include ./partials/edit %>
 	</main>
-    <script>
+    <!-- <script>
         window.scrollTo(0, 1100);
         function closeBackdrop(){
             const backdrop = document.getElementById('backdrop');
@@ -200,7 +197,7 @@
             openBackdrop();
             generateForm(`/bussiness_contacts/edit/${user._id}`, 'edit', user);
         }
-    </script>
+    </script> -->
 	
 
 

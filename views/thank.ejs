@@ -1,6 +1,11 @@
 <%- include('partials/header') %>
+
+
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <h1>Thank You</h1>
     <p><%= user.email %></p>
+    <button id="logout_button" >
+        <a href="/users/logout">Logout</a>
+    </button>
 </div>
 <%- include('partials/footer') %>
