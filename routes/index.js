@@ -9,7 +9,7 @@ const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated, ensureAdm
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 //About Page
-router.get('/thankyou', ensureAuthenticated, (req,res) => res.render('thankyou'));
+router.get('/thankyou', ensureAuthenticated, (req,res) => res.render('thank'));
 
 //About Page
 router.get('/students', ensureAdminAuthenticated, (req,res) => res.render('students'));
@@ -85,23 +85,5 @@ router.post('/comments', (req, res) => {
     // });
   }
 });
-
-// router.post('/comments/edit/:id', function(req, res){
-//   let data = req.body;
-//   let id = new ObjectID(req.params.id);
-//   data._id = id;
-//   Student.findByIdAndUpdate(id, data).then(function(err) {
-//     console.log(err, 'kkkkk');
-//     Student.findOne().then(function(items) {
-//       console.log(items)
-//       customers = items;
-//       res.redirect('/coments');
-//     });
-//   });
-// });
-
-
-
-
 
 module.exports = router;
