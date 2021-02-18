@@ -13,7 +13,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     }
-    req.flash('error_msg', 'Please log in as Admin to view that resource');
+    req.flash('success_msg', 'Please log in as Admin to view this page');
     res.redirect('/users/login/admin');
   },
 

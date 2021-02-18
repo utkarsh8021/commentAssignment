@@ -37,6 +37,7 @@ body {
   border: none;
   border-radius: 10px;
   padding: 15px;
+  margin: 10px;
 }
 
 #about_button:hover{
@@ -210,7 +211,7 @@ nav.navbar a.nav-link.active, nav.navbar a.nav-link:hover {
 *
 */
 .intro-section {
-  padding-top: 150px;
+
   color: black;
 }
 
@@ -600,7 +601,7 @@ nav.navbar a.nav-link.active, nav.navbar a.nav-link:hover {
 *
 */
 .form-control {
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 
 /*
@@ -1498,7 +1499,7 @@ h6,
 
 h1,
 .h1 {
-  font-size: 3.6rem;
+  font-size: 3.4rem;
 }
 
 h2,
