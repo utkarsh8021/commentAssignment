@@ -4,12 +4,15 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 // Load Student model
 const Student = require('../models/student.server.model');
-const { forwardAuthenticated } = require('../config/auth');
+const { forwardAuthenticated, adminAuthenticated } = require('../config/auth');
 
 //Home Page
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+
+router.get('/login/admin', adminAuthenticated, (req, res) => res.render('adminLogin'));
+
 
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
@@ -89,7 +92,7 @@ router.post('/login', (req, res, next) => {
 router.post('/login/admin', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/students',
-    failureRedirect: '/users/login',
+    failureRedirect: '/users/login/admin',
     failureFlash: true
   })(req, res, next);
 });

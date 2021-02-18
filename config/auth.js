@@ -14,7 +14,7 @@ module.exports = {
       return next();
     }
     req.flash('error_msg', 'Please log in as Admin to view that resource');
-    res.redirect('/users/login');
+    res.redirect('/users/login/admin');
   },
 
   forwardAuthenticated: function (req, res, next) {
@@ -25,8 +25,8 @@ module.exports = {
   },
 
   adminAuthenticated: function (req, res, next) {
-    console.log(req.body.email,"pppp");
-    if (!req.body.email == "admin@gmail.com" && !req.body.password == "admin123") {
+    
+    if (!req.isAuthenticated()) {
       return next();
     }
     res.redirect('/students');
