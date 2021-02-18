@@ -11,7 +11,7 @@ router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 // router.get('/about', forwardAuthenticated, (req,res) => res.render('about'));
 
 //About Page
-router.get('/comments', forwardAuthenticated, (req,res) => res.render('comment_student'));
+router.get('/comments', forwardAuthenticated, (req,res) => res.render('comments'));
 
 //About Page
 router.get('/students', adminAuthenticated, (req,res) => res.render('students'));
