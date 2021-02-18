@@ -69,10 +69,10 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-app.use('/', require('./routes/index.js'));
+app.use('/', require('./routes/comment.server.routes.js'));
 
 
-app.use('/users', require('./routes/users.js'));
+app.use('/users', require('./routes/student.server.routes.js'));
 
 
 
