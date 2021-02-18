@@ -35,17 +35,21 @@ router.get('/comments', ensureAuthenticated, function (req, res) {
       });
 });
 
-router.get('/student', function (req, res) {
+router.get('/student', ensureAdminAuthenticated, function (req, res) {
+
   Student.find({}, function(err, produtos) {
       if (err){
           console.log(err);
-      }else{
-          res.render('students.ejs', { data: produtos});
+      } else {
+        if (req.user.email == 'admin@gmail.com')
+          res.render('students.ejs', { data: produtos });
+        else
+          res.render('adminLogin.ejs');
           }
       });
 });
 
-router.get('/studentcomments', function(req,res){
+router.get('/studentcomments', function (req, res) {
   res.render('comment_student');
 })
 

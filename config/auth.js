@@ -31,7 +31,7 @@ module.exports = {
     if (!req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/students');
+    res.redirect('/student');
   }
 
 };

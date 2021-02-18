@@ -93,7 +93,7 @@ router.post('/login', (req, res, next) => {
 var sess;
 router.post('/login/admin', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/students',
+    successRedirect: '/student',
     failureRedirect: '/users/login/admin',
     failureFlash: true
   })(req, res, next);
