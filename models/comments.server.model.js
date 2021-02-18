@@ -1,6 +1,5 @@
 // Load the Mongoose module and Schema object
 const mongoose = require('mongoose');
-const { model } = require('./student.server.model');
 
 const Schema = mongoose.Schema;
 
@@ -23,4 +22,5 @@ const CommentSchema = new Schema({
 });
 //
 const Comment = mongoose.model('Comment', CommentSchema);
+
 module.exports = Comment;

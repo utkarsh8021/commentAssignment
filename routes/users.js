@@ -16,10 +16,10 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
   let errors = [];
 
-  if (!firstname || !lastname || !email || !password ) {
+  if (!firstName || !lastName || !email || !password ) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
@@ -31,8 +31,8 @@ router.post('/register', (req, res) => {
   if (errors.length > 0) {
     res.render('register', {
       errors,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       email,
       password
     });
@@ -42,15 +42,15 @@ router.post('/register', (req, res) => {
         errors.push({ msg: 'Email already exists' });
         res.render('register', {
           errors,
-          firstname,
-          lastname,
+          firstName,
+          lastName,
           email,
           password
         });
       } else {
         const newUser = new Student({
-          firstname,
-          lastname,
+          firstName,
+          lastName,
           email,
           password
         });
@@ -80,6 +80,15 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/comments',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+//Admin login
+router.post('/login/admin', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/students',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);

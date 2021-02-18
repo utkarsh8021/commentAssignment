@@ -1,20 +1,18 @@
 const express = require('express');
 const Student = require('../models/student.server.model');
+const Comment = require('../models/comments.server.model');
 var ObjectID = require('mongodb').ObjectID;
 const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated } = require('../config/auth');
+const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated, ensureAdminAuthenticated } = require('../config/auth');
 
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 //About Page
-// router.get('/about', forwardAuthenticated, (req,res) => res.render('about'));
+router.get('/thankyou', ensureAuthenticated, (req,res) => res.render('thankyou'));
 
 //About Page
-router.get('/comments', forwardAuthenticated, (req,res) => res.render('comments'));
-
-//About Page
-router.get('/students', adminAuthenticated, (req,res) => res.render('students'));
+router.get('/students', ensureAdminAuthenticated, (req,res) => res.render('students'));
 
 //About Page
 router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
@@ -22,29 +20,86 @@ router.get('/project', forwardAuthenticated, (req,res) => res.render('project'))
 // router.get('/contact', forwardAuthenticated, (req,res) => res.render('contact'));
 
 // Dashboard
-router.get('/dashboard', ensureAuthenticated, function (req, res) {
+router.get('/comments', ensureAuthenticated, function (req, res) {
   Student.find({}, function(err, produtos) {
       if (err){
           console.log(err);
       }else{
-          res.render('business_contacts.ejs', { data: produtos});
+          res.render('comments.ejs', { data: produtos});
           }
       });
 });
 
-router.post('/bussiness_contacts/edit/:id', function(req, res){
-  let data = req.body;
-  let id = new ObjectID(req.params.id);
-  data._id = id;
-  Student.findByIdAndUpdate(id, data).then(function(err) {
-    console.log(err, 'kkkkk');
-    Student.findOne().then(function(items) {
-      console.log(items)
-      customers = items;
-      res.redirect('/coments');
+// Register
+router.post('/comments', (req, res) => {
+  const { courseCode, courseName, program, semester, comment } = req.body;
+  let errors = [];
+
+  if (!courseCode || !courseName || !program || !semester || !comment ) {
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+
+  if (errors.length > 0) {
+    res.render('comments', {
+      errors,
+      courseCode,
+      courseName,
+      program,
+      semester,
+      comment
     });
-  });
+  } else {
+    // Student.findOne({ email: email }).then(user => {
+      // if (user) {
+      //   errors.push({ msg: 'Email already exists' });
+      //   res.render('register', {
+      //     errors,
+      //     firstName,
+      //     lastName,
+      //     email,
+      //     password
+      //   });
+      // } else {
+        const newComment = new Comment({
+          courseCode,
+          courseName,
+          program,
+          semester,
+          comment
+        });
+
+       
+            newComment
+              .save()
+              .then(user => {
+                req.flash(
+                  'success_msg',
+                  'You are now registered and can log in'
+                );
+                res.redirect('/thankyou');
+              })
+              .catch(err => console.log(err));
+          
+      // }
+    // });
+  }
 });
+
+// router.post('/comments/edit/:id', function(req, res){
+//   let data = req.body;
+//   let id = new ObjectID(req.params.id);
+//   data._id = id;
+//   Student.findByIdAndUpdate(id, data).then(function(err) {
+//     console.log(err, 'kkkkk');
+//     Student.findOne().then(function(items) {
+//       console.log(items)
+//       customers = items;
+//       res.redirect('/coments');
+//     });
+//   });
+// });
+
 
 
 

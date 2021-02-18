@@ -7,8 +7,15 @@ const Schema = mongoose.Schema;
 
 // Define a new 'StudentSchema'
 const StudentSchema = new Schema({
-    firstName: String,
-    lastName: String,
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName:
+    {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         // Set an email index
