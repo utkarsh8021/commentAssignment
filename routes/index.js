@@ -8,15 +8,15 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 //About Page
-router.get('/about', forwardAuthenticated, (req,res) => res.render('about'));
+// router.get('/about', forwardAuthenticated, (req,res) => res.render('about'));
 
 //About Page
-router.get('/services', forwardAuthenticated, (req,res) => res.render('services'));
+// router.get('/services', forwardAuthenticated, (req,res) => res.render('services'));
 
 //About Page
-router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
+// router.get('/project', forwardAuthenticated, (req,res) => res.render('project'));
 //About Page
-router.get('/contact', forwardAuthenticated, (req,res) => res.render('contact'));
+// router.get('/contact', forwardAuthenticated, (req,res) => res.render('contact'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, function (req, res) {
