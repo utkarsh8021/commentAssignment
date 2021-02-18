@@ -68,7 +68,8 @@
 	</header>
 
      <div style="text-align: center;margin-top: 2rem;">
-			<h1 class="high_title">List of all Students</h1>
+			<h1 class="high_title">List of Comments</h1>
+           <h3><%= email %></h3>
 	</div>
 	<main style="background-color: none; margin-top: 2rem;">
         <div id="myModal" style="margin-bottom: 14rem;
@@ -76,9 +77,45 @@
             margin-top: 6rem; padding-bottom: 10px;
             " >
 
+
+
+            <table class="d-flex flex-column justify-content-center align-items-center" style="text-align: center; background-color: none!important;">
+                <tr  style="text-align: center; background-color: #f39db6; color: white; ">
+                    <th id="table_corner_left" style="margin-bottom: 2rem;">
+                        Course Code
+                    </th>
+                   
+                   
+                    <th style=" text-align: center; padding-left: 3rem; margin-bottom: 2rem;">
+                        Course Name
+                    </th>
+                    
+                    <th style="padding-left: 5rem;">
+                        Comment
+                    </th>
+                    
+                    
+                </tr  style="text-align: center;">
+                <% comments.forEach(function(comment) { %>
+                    <tr style="text-align: center; background-color: white">
+                        <td>
+                            <%= comment.courseCode %>
+                        </td>
+                        <td style="padding-left: 5rem;">
+                            <%= comment.courseName %>
+                        </td>
+                        <td style="padding-left: 5rem;">
+                            <%= comment.comment %>                     
+                        </td>
+                       
+                    </tr>
+                <% }); %>
+            </table>
+        
+   
                
         </div>
-
+            
         
 
         <% include ./partials/edit %>

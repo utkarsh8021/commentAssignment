@@ -49,12 +49,28 @@ router.get('/student', ensureAdminAuthenticated, function (req, res) {
 });
 
 router.get("/studentcomments/:id",ensureAdminAuthenticated, function(req,res){
-  Student.findById(req.params.id, function(err,produtos ){
-      if(err){
-          res.redirect("/student");
-      }else{
-          res.render("comment_student",{data: produtos});
-      }
+  Student.findById(req.params.id, function (err, produtos) {
+    console.log(produtos.email, "po");
+    email = produtos.email;
+    if (err) {
+      res.redirect("/student");
+    }
+    //  else {
+    //   res.render("comment_student", { data: produtos });
+    // }
+  }).then(function () {
+    //find the posts from this author
+    Comment.
+      find({
+        student: req.id
+      }, (err, comments) => {
+          console.log(comments, "comm");
+        if (err) { return getErrorMessage(err); }
+        //res.json(comments);
+        res.render('comment_student', {
+          comments: comments, email: email
+        })
+      })
   })
 });
 
@@ -113,5 +129,7 @@ router.post('/comments', (req, res) => {
     // });
   }
 });
+
+
 
 module.exports = router;
